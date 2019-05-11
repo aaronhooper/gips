@@ -1,10 +1,13 @@
+#!/usr/bin/env python3
+
 import logging
 import geo
 import pickle
+import sys
 
 logging.basicConfig(level=logging.INFO)
 
-ips = geo.extract_ips('apache.txt')
+ips = geo.extract_ips(sys.stdin)
 unique_public_ips = set(ips)
 country_of = {}
 

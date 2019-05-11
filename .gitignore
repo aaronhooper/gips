@@ -1,5 +1,5 @@
+*.swp
+*.pyc
 __pycache__/
 dump.bin
-apache.txt
 countries.txt
-output.txt

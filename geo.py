@@ -9,13 +9,10 @@ def geolocate_ips(ips):
     countries = remove_emptys([geolocate_ip(ip) for ip in ips])
     return countries
 
-def extract_ips(filename):
-    logging.info("Reading file " + filename)
-    fh = open(filename, 'r', encoding='utf-8')
-    file_text = fh.read()
-    fh.close()
+def extract_ips(file_object):
+    file_text = file_object.read()
 
-    logging.info("Extracting ip addresses from " + filename)
+    logging.info("Extracting ip addresses from stdin ...")
     ipv4_address = re.compile(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", re.MULTILINE)
     ips = ipv4_address.findall(file_text)
     return ips
