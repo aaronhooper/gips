@@ -18,7 +18,7 @@ fh = open('countries.txt', 'w')
 
 for ip, country in country_of.items():
     print(ip + " -- " + country)
-    fh.write(ip + " -- " + country)
+    fh.write(ip + " -- " + country + "\n")
 
 fh.close()
 
