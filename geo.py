@@ -2,12 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import logging
+import pickle
 
 SITE = 'https://ipgeolocation.io/ip-location/'
 
 def geolocate_ips(ips):
-    ips = set(ips) - {""}
-    countries = [geolocate_ip(ip) for ip in ips]
+    countries = remove_emptys([geolocate_ip(ip) for ip in ips])
     return countries
 
 def extract_ips(filename):
@@ -49,6 +49,9 @@ def extract_country(html):
 def is_reserved(ip):
     private_ip = re.compile(r"192\.168\.\d{1,3}\.\d{1,3}")
     return private_ip.match(ip) or ip == "127.0.0.1"
+
+def remove_emptys(array):
+    return list(filter(not '', array))
 
 logging.basicConfig(level=logging.INFO)
 
