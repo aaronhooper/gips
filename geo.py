@@ -6,10 +6,26 @@ import logging
 SITE = 'https://ipgeolocation.io/ip-location/'
 
 def geolocate_ips(ips):
+    """
+
+    @type ips: list
+    @param ips: IP addresses
+
+    @rtype: list
+    @return: countries from which ips are located
+    """
     countries = remove_emptys([geolocate_ip(ip) for ip in ips])
     return countries
 
 def extract_ips(file_object):
+    """
+
+    @type file_object: file
+    @param file_object: file object containing IP addresses
+
+    @rtype: list
+    @returns: IP addresses
+    """
     file_text = file_object.read()
 
     logging.info("Extracting ip addresses from stdin ...")
@@ -18,6 +34,14 @@ def extract_ips(file_object):
     return ips
 
 def geolocate_ip(ip):
+    """
+
+    @type ip: string
+    @param ip: IP address
+
+    @rtype: string
+    @returns: country where ip is located or an empty string for a reserved address
+    """
     if is_reserved(ip):
         logging.info("Not locating reserved ip address " + ip)
         return ""
@@ -30,6 +54,14 @@ def geolocate_ip(ip):
     return country
 
 def extract_country(html):
+    """
+
+    @type html: string
+    @param html: HTML text
+
+    @rtype: string
+    @returns: the country name or an empty string if none was found
+    """
     soup = BeautifulSoup(html, 'html.parser')
     table_cells = soup.findAll('td')
 
@@ -43,8 +75,24 @@ def extract_country(html):
     return country_name
 
 def is_reserved(ip):
+    """
+
+    @type ip: string
+    @param ip: IP address
+
+    @rtype: boolean
+    @returns: if the IP is reserved or not
+    """
     private_ip = re.compile(r"192\.168\.\d{1,3}\.\d{1,3}")
     return private_ip.match(ip) or ip == "127.0.0.1"
 
 def remove_emptys(array):
+    """
+
+    @type array: list
+    @param array: a list that contains empty elements
+
+    @rtype: list
+    @returns: a list with the empty elements removed
+    """
     return list(filter(not '', array))
