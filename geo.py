@@ -53,11 +53,19 @@ def is_reserved(ip):
 logging.basicConfig(level=logging.INFO)
 
 ips = extract_ips('apache.txt')
-countries = geolocate_ips(ips)
+unique_public_ips = set(ips)
+country_of = {}
 
-print(countries)
+for ip in unique_public_ips:
+    country_of[ip] = geolocate_ip(ip)
 
 fh = open('countries.txt', 'w')
-fh.write(str(countries))
+
+for ip, country in country_of.items():
+    print(ip + " -- " + country)
+    fh.write(ip + " -- " + country)
+
 fh.close()
 
+logging.info('Dumping contents of country_of')
+pickle.dump(country_of, open('dump.bin', 'wb'))
