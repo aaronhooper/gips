@@ -84,7 +84,7 @@ def is_reserved(ip):
     @returns: if the IP is reserved or not
     """
     private_ip = re.compile(r"192\.168\.\d{1,3}\.\d{1,3}")
-    return private_ip.match(ip) or ip == "127.0.0.1"
+    return bool(private_ip.match(ip)) or ip == "127.0.0.1"
 
 def remove_emptys(array):
     """
@@ -95,4 +95,4 @@ def remove_emptys(array):
     @rtype: list
     @returns: a list with the empty elements removed
     """
-    return list(filter(not '', array))
+    return list(filter(lambda item: item != '', array))
