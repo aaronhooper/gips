@@ -87,8 +87,21 @@ def is_reserved(ip):
     @rtype: boolean
     @returns: if the IP is reserved or not
     """
-    private_ip = re.compile(r"192\.168\.\d{1,3}\.\d{1,3}")
-    return bool(private_ip.match(ip)) or ip == "127.0.0.1"
+    ip_split = ip.split(".")
+
+    if (ip_split[0] == "172" and 16 <= int(ip_split[1]) <= 31):
+        return True
+
+    if (ip_split[0] == "192" and ip_split[1] == "168"):
+        return True
+
+    if (ip_split[0] == "127"):
+        return True
+
+    if (ip_split[0] == "10"):
+        return True
+
+    return False
 
 
 def remove_emptys(array):
