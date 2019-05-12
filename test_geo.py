@@ -4,7 +4,7 @@ import geo
 class TestGeo(TestCase):
 
     def setUp(self):
-        self.input_html = """
+        self.mock_html = """
         <tr><td>IP</td><td>8.8.8.8</td></tr>
         <tr><td>Continent Code</td><td>NA</td></tr>
         <tr><td>Continent</td><td>North America</td></tr>
@@ -28,7 +28,7 @@ class TestGeo(TestCase):
 
 
     def test_geolocate_ip(self):
-        mock_response = mock.Mock(text=self.input_html)
+        mock_response = mock.Mock(text=self.mock_html)
 
         with mock.patch("geo.requests.get") as mock_get:
             mock_get.return_value = mock_response
@@ -40,7 +40,7 @@ class TestGeo(TestCase):
 
     def test_extract_country(self):
         expected = "United States"
-        self.assertEqual(geo.extract_country(self.input_html), expected)
+        self.assertEqual(geo.extract_country(self.mock_html), expected)
 
 
     def test_is_reserved(self):
