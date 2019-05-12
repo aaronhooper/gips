@@ -29,7 +29,7 @@ def extract_ips(file_object):
     file_text = file_object.read()
 
     logging.info("Extracting ip addresses from stdin ...")
-    ipv4_address = re.compile(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", re.MULTILINE)
+    ipv4_address = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")
     ips = ipv4_address.findall(file_text)
     return ips
 
