@@ -8,10 +8,10 @@ import sys
 logging.basicConfig(level=logging.INFO)
 
 ips = geo.extract_ips(sys.stdin)
-unique_public_ips = set(ips)
+unique_ips = set(ips)
 country_of = {}
 
-for ip in unique_public_ips:
+for ip in unique_ips:
     country_of[ip] = geo.geolocate_ip(ip)
 
 fh = open('countries.txt', 'w')
