@@ -104,13 +104,13 @@ def is_reserved(ip):
     return False
 
 
-def remove_emptys(array):
+def remove_emptys(list_):
     """
 
-    @type array: list
-    @param array: a list that contains empty elements
+    @type list_: list
+    @param list_: a list that contains empty elements
 
     @rtype: list
     @returns: a list with the empty elements removed
     """
-    return list(filter(lambda item: item != '', array))
+    return list(filter(lambda item: item != '', list_))
