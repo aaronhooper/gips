@@ -14,13 +14,10 @@ country_of = {}
 for ip in unique_ips:
     country_of[ip] = geolocate_ip(ip)
 
-fh = open('countries.txt', 'w')
-
-for ip, country in country_of.items():
-    print(ip + " -- " + country)
-    fh.write(ip + " -- " + country + "\n")
-
-fh.close()
+with open('countries.txt', 'w') as fh:
+    for ip, country in country_of.items():
+        print(ip + " -- " + country)
+        fh.write(ip + " -- " + country + "\n")
 
 logging.info('Dumping collection to file')
 pickle.dump(country_of, open('dump.bin', 'wb'))
