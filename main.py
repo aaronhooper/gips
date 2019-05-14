@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
 import logging
-import geo
+from geo import extract_ips, geolocate_ip
 import pickle
 import sys
 
 logging.basicConfig(level=logging.INFO)
 
-ips = geo.extract_ips(sys.stdin)
+ips = extract_ips(sys.stdin)
 unique_ips = set(ips)
 country_of = {}
 
 for ip in unique_ips:
-    country_of[ip] = geo.geolocate_ip(ip)
+    country_of[ip] = geolocate_ip(ip)
 
 fh = open('countries.txt', 'w')
 
