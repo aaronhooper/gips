@@ -45,13 +45,13 @@ def geolocate_ip(ip):
     @returns: country where ip is located or an empty string for a reserved address
     """
     if is_reserved(ip):
-        logging.info("Not locating reserved ip address " + ip)
+        logging.info(f"Not locating reserved ip address {ip}")
         return ""
 
     html = requests.get(SITE + ip).text
-    logging.info("Extracting country for " + ip + " ...")
+    logging.info(f"Extracting country for {ip} ...")
     country = extract_country(html)
-    logging.info("Country found: " + country)
+    logging.info(f"Country found: {country}")
 
     return country
 

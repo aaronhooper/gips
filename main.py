@@ -16,8 +16,8 @@ for ip in unique_ips:
 
 with open('countries.txt', 'w') as fh:
     for ip, country in country_of.items():
-        print(ip + " -- " + country)
-        fh.write(ip + " -- " + country + "\n")
+        print(f"{ip} -- {country}")
+        fh.write(f"{ip} -- {country}\n")
 
 logging.info('Dumping collection to file')
 pickle.dump(country_of, open('dump.bin', 'wb'))
