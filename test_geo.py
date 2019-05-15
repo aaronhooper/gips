@@ -27,7 +27,9 @@ class TestGeo(TestCase):
         mock_file = mock.Mock(read=mock_read)
 
         result = geo.extract_ips(mock_file)
-        self.assertEqual(["2.110.20.189","192.168.1.5", "176.249.131.208"], result)
+        expected = ["2.110.20.189","192.168.1.5", "176.249.131.208"]
+
+        self.assertEqual(result, expected)
 
 
     def test_geolocate_ip(self):
@@ -37,13 +39,17 @@ class TestGeo(TestCase):
             mock_get.return_value = mock_response
 
             result = geo.geolocate_ip("8.8.8.8")
-            self.assertEqual("United States", result)
+            expected = "United States"
+
+            self.assertEqual(result, expected)
             mock_get.assert_called_with('https://ipgeolocation.io/ip-location/8.8.8.8')
 
 
     def test_extract_country(self):
+        result = geo.extract_country(self.mock_html)
         expected = "United States"
-        self.assertEqual(geo.extract_country(self.mock_html), expected)
+
+        self.assertEqual(result, expected)
 
 
     def test_is_reserved(self):
@@ -70,9 +76,11 @@ class TestGeo(TestCase):
 
     def test_remove_emptys(self):
         input_list = ['abc', '123', '', 'aeiou', '', 'xyz']
-        result = geo.remove_emptys(input_list)
 
-        self.assertEqual(result, ['abc', '123', 'aeiou', 'xyz'])
+        result = geo.remove_emptys(input_list)
+        expected = ['abc', '123', 'aeiou', 'xyz']
+
+        self.assertEqual(result, expected)
 
 
 if __name__ == "__main__":
