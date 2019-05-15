@@ -11,16 +11,12 @@ class TestGeo(TestCase):
         <tr><td>Country Codes</td><td>US, USA</td></tr>
         <tr><td>Country</td><td>United States</td></tr>
         """
-
         self.mock_text = """
         2.110.20.189 - - [07/May/2019:19:39:08 +0000]
         192.168.1.5 - - [07/May/2019:19:40:00 +0000]
         176.249.131.208 - - [07/May/2019:19:40:20 +0000]
-
         """
-
         self.mock_ips = ["2.110.20.189","192.168.1.5", "176.249.131.208"]
-
 
     def test_extract_ips(self):
         mock_read = mock.Mock(return_value=self.mock_text)
@@ -31,10 +27,8 @@ class TestGeo(TestCase):
 
         self.assertEqual(result, expected)
 
-
     def test_geolocate_ip(self):
         mock_response = mock.Mock(text=self.mock_html)
-
         with mock.patch("geo.requests.get") as mock_get:
             mock_get.return_value = mock_response
 
@@ -44,13 +38,11 @@ class TestGeo(TestCase):
             self.assertEqual(result, expected)
             mock_get.assert_called_with('https://ipgeolocation.io/ip-location/8.8.8.8')
 
-
     def test_extract_country(self):
         result = geo.extract_country(self.mock_html)
         expected = "United States"
 
         self.assertEqual(result, expected)
-
 
     def test_is_reserved(self):
         self.assertEqual(geo.is_reserved("127.0.0.1"), True)
@@ -73,7 +65,6 @@ class TestGeo(TestCase):
         self.assertEqual(geo.is_reserved("10.65.1.254"), True)
         self.assertEqual(geo.is_reserved("10.2.10.2"), True)
 
-
     def test_remove_emptys(self):
         input_list = ['abc', '123', '', 'aeiou', '', 'xyz']
 
@@ -81,7 +72,6 @@ class TestGeo(TestCase):
         expected = ['abc', '123', 'aeiou', 'xyz']
 
         self.assertEqual(result, expected)
-
 
 if __name__ == "__main__":
     main()
