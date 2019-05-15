@@ -45,17 +45,15 @@ class TestGeo(TestCase):
         self.assertEqual(result, expected)
 
     def test_is_reserved(self):
+        # Loopback
         self.assertEqual(geo.is_reserved("127.0.0.1"), True)
         self.assertEqual(geo.is_reserved("127.34.45.200"), True)
         self.assertEqual(geo.is_reserved("127.99.99.99"), True)
 
+        # Private
         self.assertEqual(geo.is_reserved("192.168.3.7"), True)
         self.assertEqual(geo.is_reserved("192.168.1.2"), True)
         self.assertEqual(geo.is_reserved("192.168.254.23"), True)
-
-        self.assertEqual(geo.is_reserved("42.155.6.92"), False)
-        self.assertEqual(geo.is_reserved("96.94.123.77"), False)
-        self.assertEqual(geo.is_reserved("199.217.44.1"), False)
 
         self.assertEqual(geo.is_reserved("172.16.1.94"), True)
         self.assertEqual(geo.is_reserved("172.24.211.94"), True)
@@ -64,6 +62,11 @@ class TestGeo(TestCase):
         self.assertEqual(geo.is_reserved("10.11.12.1"), True)
         self.assertEqual(geo.is_reserved("10.65.1.254"), True)
         self.assertEqual(geo.is_reserved("10.2.10.2"), True)
+
+        # Public
+        self.assertEqual(geo.is_reserved("42.155.6.92"), False)
+        self.assertEqual(geo.is_reserved("96.94.123.77"), False)
+        self.assertEqual(geo.is_reserved("199.217.44.1"), False)
 
     def test_remove_emptys(self):
         input_list = ['abc', '123', '', 'aeiou', '', 'xyz']
