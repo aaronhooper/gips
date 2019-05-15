@@ -18,7 +18,8 @@ def geolocate_ips(ips):
 
 def extract_ips(file_object):
     """
-    Returns a list containing all IP addresses found in the file object.
+    Returns a list containing all IP addresses found in the file
+    object.
 
     @type file_object: file
     @rtype: list
@@ -53,7 +54,8 @@ def geolocate_ip(ip):
 
 def extract_country(html):
     """
-    Returns the country name extracted from the HTML or '' if none was found.
+    Returns the country name extracted from the HTML or '' if none was
+    found.
 
     @type html: string
     @rtype: string
@@ -73,7 +75,8 @@ def extract_country(html):
 
 def is_reserved(ip):
     """
-    Returns a boolean representing whether the IP address is reserved or not.
+    Returns a boolean representing whether the IP address is reserved
+    or not.
 
     @type ip: string
     @rtype: boolean
