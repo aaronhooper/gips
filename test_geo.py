@@ -12,15 +12,18 @@ class TestGeo(TestCase):
         <tr><td>Country</td><td>United States</td></tr>
         """
 
-
-    def test_extract_ips(self):
-        mock_text = """
+        self.mock_text = """
         2.110.20.189 - - [07/May/2019:19:39:08 +0000]
         192.168.1.5 - - [07/May/2019:19:40:00 +0000]
         176.249.131.208 - - [07/May/2019:19:40:20 +0000]
 
         """
-        mock_read = mock.Mock(return_value=mock_text)
+
+        self.mock_ips = ["2.110.20.189","192.168.1.5", "176.249.131.208"]
+
+
+    def test_extract_ips(self):
+        mock_read = mock.Mock(return_value=self.mock_text)
         mock_file = mock.Mock(read=mock_read)
 
         result = geo.extract_ips(mock_file)
