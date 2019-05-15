@@ -113,4 +113,4 @@ def remove_emptys(list_):
     @rtype: list
     @returns: a list with the empty elements removed
     """
-    return list(filter(lambda item: item != '', list_))
+    return [item for item in list_ if item != '']
