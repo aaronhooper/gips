@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import logging
-from geo import extract_ips, geolocate_ip
 import pickle
 import sys
+
+from geo import extract_ips, geolocate_ip
 
 logging.basicConfig(level=logging.INFO)
 

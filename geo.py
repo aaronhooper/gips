@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
 import re
 import logging
+
+from bs4 import BeautifulSoup
+import requests
 
 SITE = 'https://ipgeolocation.io/ip-location/'
 
