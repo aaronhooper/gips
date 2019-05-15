@@ -15,10 +15,10 @@ country_of = {}
 for ip in unique_ips:
     country_of[ip] = geolocate_ip(ip)
 
-with open('countries.txt', 'w') as fh:
+with open("countries.txt", "w") as fh:
     for ip, country in country_of.items():
         print(f"{ip} -- {country}")
         fh.write(f"{ip} -- {country}\n")
 
-logging.info('Dumping collection to file')
-pickle.dump(country_of, open('dump.bin', 'wb'))
+logging.info("Dumping collection to file")
+pickle.dump(country_of, open("dump.bin", "wb"))

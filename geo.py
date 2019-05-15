@@ -4,7 +4,7 @@ import logging
 from bs4 import BeautifulSoup
 import requests
 
-SITE = 'https://ipgeolocation.io/ip-location/'
+SITE = "https://ipgeolocation.io/ip-location/"
 
 def geolocate_ips(ips):
     """
@@ -35,7 +35,7 @@ def extract_ips(file_object):
 
 def geolocate_ip(ip):
     """
-    Returns a country from which an IP address is located or '' for a
+    Returns a country from which an IP address is located or "" for a
     reserved address.
 
     @type ip: string
@@ -55,18 +55,18 @@ def geolocate_ip(ip):
 
 def extract_country(html):
     """
-    Returns the country name extracted from the HTML or '' if none was
+    Returns the country name extracted from the HTML or "" if none was
     found.
 
     This function uses the Beautiful Soup web scraper to extract the
-    country name from the site defined in 'SITE' so it is likely to
+    country name from the site defined in "SITE" so it is likely to
     break if/when the website developer changes the markup.
 
     @type html: string
     @rtype: string
     """
-    soup = BeautifulSoup(html, 'html.parser')
-    table_cells = soup.findAll('td')
+    soup = BeautifulSoup(html, "html.parser")
+    table_cells = soup.findAll("td")
 
     try:
         country_header = table_cells[8]
@@ -110,4 +110,4 @@ def remove_emptys(list_):
     @type list_: list
     @rtype: list
     """
-    return [item for item in list_ if item != '']
+    return [item for item in list_ if item != ""]
