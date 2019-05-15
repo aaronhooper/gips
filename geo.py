@@ -58,6 +58,10 @@ def extract_country(html):
     Returns the country name extracted from the HTML or '' if none was
     found.
 
+    This function uses the Beautiful Soup web scraper to extract the
+    country name from the site defined in 'SITE' so it is likely to
+    break if/when the website developer changes the markup.
+
     @type html: string
     @rtype: string
     """
