@@ -7,12 +7,10 @@ SITE = 'https://ipgeolocation.io/ip-location/'
 
 def geolocate_ips(ips):
     """
+    Returns a list of countries that the IP addresses belong to.
 
     @type ips: list
-    @param ips: IP addresses
-
     @rtype: list
-    @return: countries from which ips are located
     """
     countries = remove_emptys([geolocate_ip(ip) for ip in ips])
     return countries
@@ -20,12 +18,10 @@ def geolocate_ips(ips):
 
 def extract_ips(file_object):
     """
+    Returns a list containing all IP addresses found in the file object.
 
     @type file_object: file
-    @param file_object: file object containing IP addresses
-
     @rtype: list
-    @returns: IP addresses
     """
     file_text = file_object.read()
 
@@ -37,12 +33,11 @@ def extract_ips(file_object):
 
 def geolocate_ip(ip):
     """
+    Returns a country from which an IP address is located or '' for a
+    reserved address.
 
     @type ip: string
-    @param ip: IP address
-
     @rtype: string
-    @returns: country where ip is located or an empty string for a reserved address
     """
     if is_reserved(ip):
         logging.info(f"Not locating reserved ip address {ip}")
@@ -58,12 +53,10 @@ def geolocate_ip(ip):
 
 def extract_country(html):
     """
+    Returns the country name extracted from the HTML or '' if none was found.
 
     @type html: string
-    @param html: HTML text
-
     @rtype: string
-    @returns: the country name or an empty string if none was found
     """
     soup = BeautifulSoup(html, 'html.parser')
     table_cells = soup.findAll('td')
@@ -80,12 +73,10 @@ def extract_country(html):
 
 def is_reserved(ip):
     """
+    Returns a boolean representing whether the IP address is reserved or not.
 
     @type ip: string
-    @param ip: IP address
-
     @rtype: boolean
-    @returns: if the IP is reserved or not
     """
     ip_split = ip.split(".")
 
@@ -106,11 +97,9 @@ def is_reserved(ip):
 
 def remove_emptys(list_):
     """
+    Returns a list with the empty elements removed.
 
     @type list_: list
-    @param list_: a list that contains empty elements
-
     @rtype: list
-    @returns: a list with the empty elements removed
     """
     return [item for item in list_ if item != '']
