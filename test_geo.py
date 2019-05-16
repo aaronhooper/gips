@@ -23,7 +23,7 @@ class TestGeo(TestCase):
         mock_file = mock.Mock(read=mock_read)
 
         result = geo.extract_ips(mock_file)
-        expected = ["2.110.20.189","192.168.1.5", "176.249.131.208"]
+        expected = self.mock_ips
 
         self.assertEqual(result, expected)
 
